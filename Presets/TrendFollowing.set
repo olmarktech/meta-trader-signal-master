@@ -1,0 +1,70 @@
+# Trend Following Strategy Preset for MT5 Trading Signals Bot
+# This preset is optimized for identifying and following strong trends
+
+# General Settings
+TimeFrame=16385                         # H1 Timeframe
+TradingSymbols=EURUSD,GBPUSD,USDJPY,AUDUSD,USDCAD
+MaxDailyTrades=3                       # Limit trades to avoid overtrading
+AutoDetectVolatilePairs=false          # Use specified pairs
+
+# Risk Management Settings
+LotSize=0.01                           # Fixed lot size
+UsePercentRisk=true                    # Use percentage risk
+RiskPercent=1.0                        # Risk 1% of balance per trade
+StopLossPips=50                        # Stop loss in pips
+TakeProfitPips=100                     # Take profit in pips (2:1 reward:risk)
+UseTrailingStop=true                   # Enable trailing stop
+TrailingStopPips=30                    # Trailing stop distance
+RiskRewardRatio=2.0                    # Risk-reward ratio
+
+# Signal Settings
+StrategyPreset=2                       # 2 = STRATEGY_TREND_FOLLOWING
+MinimumSignalStrength=5                # Above average signal strength required
+EnableNewsFilter=true                  # Avoid trading during news events
+MinNewsImportance=2                    # Filter medium and high impact news
+
+# AI Settings
+EnableAIAnalysis=true                  # Enable AI-enhanced signal analysis
+EnableSentimentAnalysis=true           # Enable market sentiment analysis
+
+# Strategy Specific Indicators
+CustomizeStrategy=false                # Use predefined indicator setup
+UseMACross=true                        # Moving Average crossover
+UseRSI=true                            # RSI filter
+UseMACD=false                          # MACD not needed for this strategy
+UseStochastic=false                    # Stochastic not used
+UseBollingerBands=false                # BB not used
+UseADX=true                            # ADX for trend strength
+UseATR=true                            # ATR for dynamic SL/TP
+UseFibonacci=false                     # Fibonacci not used
+UsePriceAction=false                   # Price action not primary focus
+
+# Indicator Parameters
+# Moving Averages
+fastMA=20                              # Faster EMA period
+slowMA=50                              # Slower EMA period
+maMethod=1                             # 1 = MODE_EMA (Exponential)
+maAppliedPrice=1                       # 1 = PRICE_CLOSE
+
+# RSI Parameters
+rsiPeriod=14                           # Standard RSI period
+rsiOverbought=70                       # Overbought level
+rsiOversold=30                         # Oversold level
+
+# ADX Parameters
+adxPeriod=14                           # ADX period
+adxThreshold=25                        # Minimum ADX for trend validity
+
+# ATR Parameters
+atrPeriod=14                           # ATR period for volatility
+
+# Notification Settings
+EnableMT5Alerts=true                   # Enable MT5 alert popups
+EnableEmailAlerts=false                # Email alerts off by default
+EnableTelegramAlerts=false             # Telegram alerts off by default
+
+# Dashboard Settings
+ShowDashboard=true                     # Show visual dashboard
+DashboardX=20                          # Dashboard position
+DashboardY=20                          # Dashboard position
+DashboardFontSize=10                   # Dashboard font size

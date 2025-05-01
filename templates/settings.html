@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT5 Signal Bot - Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .preset-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .preset-card:hover {
+            transform: translateY(-5px);
+        }
+        .preset-card.scalping {
+            border-left: 5px solid #20c997;
+        }
+        .preset-card.swing {
+            border-left: 5px solid #fd7e14;
+        }
+        .preset-card.trend {
+            border-left: 5px solid #0d6efd;
+        }
+        .preset-card.reversal {
+            border-left: 5px solid #dc3545;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">MT5 Signal Bot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Strategy Presets</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card preset-card scalping" onclick="window.location='/load_preset/STRATEGY_SCALPING'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Scalping</h5>
+                                        <p class="card-text">Short-term trading on M1/M5 timeframes with fast indicators</p>
+                                        <ul class="list-unstyled">
+                                            <li><small>Timeframe: M1/M5</small></li>
+                                            <li><small>MA Cross + RSI + Stochastic</small></li>
+                                            <li><small>Tight SL/TP, Higher Frequency</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card preset-card swing" onclick="window.location='/load_preset/STRATEGY_SWING_TRADING'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Swing Trading</h5>
+                                        <p class="card-text">Medium-term trading based on price action and major levels</p>
+                                        <ul class="list-unstyled">
+                                            <li><small>Timeframe: H4</small></li>
+                                            <li><small>Price Action + MACD + Fibonacci</small></li>
+                                            <li><small>Wider SL/TP, Higher Risk/Reward</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card preset-card trend" onclick="window.location='/load_preset/STRATEGY_TREND_FOLLOWING'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Trend Following</h5>
+                                        <p class="card-text">Identify and follow strong market trends</p>
+                                        <ul class="list-unstyled">
+                                            <li><small>Timeframe: H1</small></li>
+                                            <li><small>MA Cross + ADX + RSI</small></li>
+                                            <li><small>Focus on strong trends only</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card preset-card reversal" onclick="window.location='/load_preset/STRATEGY_REVERSAL'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Reversal</h5>
+                                        <p class="card-text">Capture market reversals at extreme levels</p>
+                                        <ul class="list-unstyled">
+                                            <li><small>Timeframe: H1</small></li>
+                                            <li><small>Price Action + RSI + Bollinger Bands</small></li>
+                                            <li><small>Focus on overbought/oversold conditions</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">Custom Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/settings">
+                            <div class="row">
+                                <!-- General Settings -->
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">General Settings</h5>
+                                    
+                                    <div class="mb-3">
+                                        <label for="strategy_preset" class="form-label">Strategy Preset</label>
+                                        <select class="form-select" id="strategy_preset" name="strategy_preset" disabled>
+                                            <option value="STRATEGY_SCALPING" {{ 'selected' if settings.strategy_preset == 'STRATEGY_SCALPING' else '' }}>Scalping</option>
+                                            <option value="STRATEGY_SWING_TRADING" {{ 'selected' if settings.strategy_preset == 'STRATEGY_SWING_TRADING' else '' }}>Swing Trading</option>
+                                            <option value="STRATEGY_TREND_FOLLOWING" {{ 'selected' if settings.strategy_preset == 'STRATEGY_TREND_FOLLOWING' else '' }}>Trend Following</option>
+                                            <option value="STRATEGY_REVERSAL" {{ 'selected' if settings.strategy_preset == 'STRATEGY_REVERSAL' else '' }}>Reversal</option>
+                                        </select>
+                                        <div class="form-text">Use the preset cards above to change the strategy</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="time_frame" class="form-label">Timeframe</label>
+                                        <select class="form-select" id="time_frame" name="time_frame">
+                                            <option value="M1" {{ 'selected' if settings.time_frame == 'M1' else '' }}>M1</option>
+                                            <option value="M5" {{ 'selected' if settings.time_frame == 'M5' else '' }}>M5</option>
+                                            <option value="M15" {{ 'selected' if settings.time_frame == 'M15' else '' }}>M15</option>
+                                            <option value="M30" {{ 'selected' if settings.time_frame == 'M30' else '' }}>M30</option>
+                                            <option value="H1" {{ 'selected' if settings.time_frame == 'H1' else '' }}>H1</option>
+                                            <option value="H4" {{ 'selected' if settings.time_frame == 'H4' else '' }}>H4</option>
+                                            <option value="D1" {{ 'selected' if settings.time_frame == 'D1' else '' }}>D1</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="trading_symbols" class="form-label">Trading Symbols</label>
+                                        <input type="text" class="form-control" id="trading_symbols" name="trading_symbols" value="{{ settings.trading_symbols }}">
+                                        <div class="form-text">Comma-separated list of trading symbols (e.g., EURUSD,GBPUSD)</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="max_daily_trades" class="form-label">Maximum Daily Trades</label>
+                                        <input type="number" class="form-control" id="max_daily_trades" name="max_daily_trades" value="{{ settings.max_daily_trades }}" min="1" max="20">
+                                    </div>
+                                </div>
+                                
+                                <!-- Risk Management Settings -->
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Risk Management Settings</h5>
+                                    
+                                    <div class="mb-3">
+                                        <label for="risk_percent" class="form-label">Risk Percent</label>
+                                        <input type="number" class="form-control" id="risk_percent" name="risk_percent" value="{{ settings.risk_percent }}" min="0.1" max="10" step="0.1">
+                                        <div class="form-text">Percentage of account balance to risk per trade</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="stop_loss_pips" class="form-label">Stop Loss (pips)</label>
+                                        <input type="number" class="form-control" id="stop_loss_pips" name="stop_loss_pips" value="{{ settings.stop_loss_pips }}" min="5" max="500">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="take_profit_pips" class="form-label">Take Profit (pips)</label>
+                                        <input type="number" class="form-control" id="take_profit_pips" name="take_profit_pips" value="{{ settings.take_profit_pips }}" min="5" max="1000">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="minimum_signal_strength" class="form-label">Minimum Signal Strength (1-10)</label>
+                                        <input type="number" class="form-control" id="minimum_signal_strength" name="minimum_signal_strength" value="{{ settings.minimum_signal_strength }}" min="1" max="10">
+                                    </div>
+                                    
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="enable_news_filter" name="enable_news_filter" {{ 'checked' if settings.enable_news_filter else '' }}>
+                                        <label class="form-check-label" for="enable_news_filter">Enable News Filter</label>
+                                        <div class="form-text">Avoid trading during high-impact news events</div>
+                                    </div>
+                                    
+                                    <div class="border-top pt-3 mt-3">
+                                        <h6 class="mb-3">AI Features</h6>
+                                        <div class="mb-3 form-check">
+                                            <input type="checkbox" class="form-check-input" id="enable_ai_analysis" name="enable_ai_analysis" {{ 'checked' if settings.enable_ai_analysis else '' }}>
+                                            <label class="form-check-label" for="enable_ai_analysis">Enable AI-Enhanced Analysis</label>
+                                            <div class="form-text">Use advanced machine learning to enhance signal quality</div>
+                                        </div>
+                                        
+                                        <div class="mb-3 form-check">
+                                            <input type="checkbox" class="form-check-input" id="enable_sentiment_analysis" name="enable_sentiment_analysis" {{ 'checked' if settings.enable_sentiment_analysis else '' }}>
+                                            <label class="form-check-label" for="enable_sentiment_analysis">Enable Market Sentiment Analysis</label>
+                                            <div class="form-text">Use market sentiment data to improve signal accuracy</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="/" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# Swing Trading Strategy Preset for MT5 Trading Signals Bot
+# This preset is optimized for medium-term price swings
+
+# General Settings
+TimeFrame=16392                        # H4 Timeframe
+TradingSymbols=EURUSD,GBPUSD,USDJPY,AUDUSD,EURGBP,EURJPY
+MaxDailyTrades=2                       # Lower trade frequency for swing trading
+AutoDetectVolatilePairs=false          # Use specified pairs
+
+# Risk Management Settings
+LotSize=0.01                           # Fixed lot size
+UsePercentRisk=true                    # Use percentage risk
+RiskPercent=1.5                        # Risk 1.5% of balance per trade
+StopLossPips=80                        # Wider stop loss for swing trading
+TakeProfitPips=240                     # Take profit in pips (3:1 reward:risk)
+UseTrailingStop=true                   # Enable trailing stop
+TrailingStopPips=50                    # Trailing stop distance
+RiskRewardRatio=3.0                    # Higher risk-reward for swing trading
+
+# Signal Settings
+StrategyPreset=1                       # 1 = STRATEGY_SWING_TRADING
+MinimumSignalStrength=6                # Higher signal strength required
+EnableNewsFilter=true                  # Avoid trading during news events
+MinNewsImportance=2                    # Filter medium and high impact news
+
+# Strategy Specific Indicators
+CustomizeStrategy=false                # Use predefined indicator setup
+UseMACross=false                       # MA crossover not primary
+UseRSI=false                           # RSI not primary
+UseMACD=true                           # MACD for trend and momentum
+UseStochastic=false                    # Stochastic not used
+UseBollingerBands=false                # BB not primary
+UseADX=false                           # ADX not primary
+UseATR=true                            # ATR for volatility and position sizing
+UseFibonacci=true                      # Fibonacci for support/resistance
+UsePriceAction=true                    # Price action patterns crucial
+
+# Indicator Parameters
+# MACD Parameters
+macdFast=12                            # MACD fast period
+macdSlow=26                            # MACD slow period
+macdSignal=9                           # MACD signal period
+
+# ATR Parameters
+atrPeriod=14                           # ATR period for volatility
+
+# Notification Settings
+EnableMT5Alerts=true                   # Enable MT5 alert popups
+EnableEmailAlerts=false                # Email alerts off by default
+EnableTelegramAlerts=false             # Telegram alerts off by default
+
+# Dashboard Settings
+ShowDashboard=true                     # Show visual dashboard
+DashboardX=20                          # Dashboard position
+DashboardY=20                          # Dashboard position
+DashboardFontSize=10                   # Dashboard font size

@@ -1,0 +1,67 @@
+# Scalping Strategy Preset for MT5 Trading Signals Bot
+# This preset is optimized for quick short-term trades
+
+# General Settings
+TimeFrame=1                            # M1 Timeframe
+TradingSymbols=EURUSD,GBPUSD,USDJPY,AUDUSD
+MaxDailyTrades=10                      # Higher trade frequency for scalping
+AutoDetectVolatilePairs=true           # Detect volatile pairs automatically
+
+# Risk Management Settings
+LotSize=0.01                           # Fixed lot size
+UsePercentRisk=true                    # Use percentage risk
+RiskPercent=0.5                        # Lower risk per trade (0.5%)
+StopLossPips=10                        # Tight stop loss for scalping
+TakeProfitPips=15                      # Take profit in pips (1.5:1 reward:risk)
+UseTrailingStop=true                   # Enable trailing stop
+TrailingStopPips=5                     # Tight trailing stop
+RiskRewardRatio=1.5                    # Lower risk-reward for faster trades
+
+# Signal Settings
+StrategyPreset=0                       # 0 = STRATEGY_SCALPING
+MinimumSignalStrength=4                # Allow lower strength signals
+EnableNewsFilter=true                  # Avoid trading during news events
+MinNewsImportance=3                    # Filter only high impact news
+
+# Strategy Specific Indicators
+CustomizeStrategy=false                # Use predefined indicator setup
+UseMACross=true                        # Fast MA crossover
+UseRSI=true                            # RSI for quick reversals
+UseMACD=false                          # MACD too slow for scalping
+UseStochastic=true                     # Stochastic for overbought/oversold
+UseBollingerBands=false                # BB not primary
+UseADX=false                           # ADX not used
+UseATR=true                            # ATR for volatility
+UseFibonacci=false                     # Fibonacci not used
+UsePriceAction=false                   # Price action not primary
+
+# Indicator Parameters
+# Moving Averages
+fastMA=5                               # Very fast EMA
+slowMA=10                              # Fast EMA
+maMethod=1                             # 1 = MODE_EMA (Exponential)
+maAppliedPrice=1                       # 1 = PRICE_CLOSE
+
+# RSI Parameters
+rsiPeriod=7                            # Shorter RSI period for faster signals
+rsiOverbought=70                       # Overbought level
+rsiOversold=30                         # Oversold level
+
+# Stochastic Parameters
+stochKPeriod=5                         # Fast %K
+stochDPeriod=3                         # Fast %D
+stochSlowing=3                         # Slowing
+
+# ATR Parameters
+atrPeriod=7                            # Shorter ATR period
+
+# Notification Settings
+EnableMT5Alerts=true                   # Enable MT5 alert popups
+EnableEmailAlerts=false                # Email alerts off by default
+EnableTelegramAlerts=false             # Telegram alerts off by default
+
+# Dashboard Settings
+ShowDashboard=true                     # Show visual dashboard
+DashboardX=20                          # Dashboard position
+DashboardY=20                          # Dashboard position
+DashboardFontSize=10                   # Dashboard font size

@@ -1,0 +1,60 @@
+# Reversal Strategy Preset for MT5 Trading Signals Bot
+# This preset is optimized for identifying market reversals
+
+# General Settings
+TimeFrame=16385                         # H1 Timeframe
+TradingSymbols=EURUSD,GBPUSD,USDJPY,AUDUSD,USDCAD
+MaxDailyTrades=2                       # Conservative trade limit for reversals
+AutoDetectVolatilePairs=false          # Use specified pairs
+
+# Risk Management Settings
+LotSize=0.01                           # Fixed lot size
+UsePercentRisk=true                    # Use percentage risk
+RiskPercent=1.0                        # Risk 1% of balance per trade
+StopLossPips=60                        # Wider stop loss for reversals
+TakeProfitPips=120                     # Take profit in pips (2:1 reward:risk)
+UseTrailingStop=false                  # No trailing stop for reversal trades
+TrailingStopPips=0                     # No trailing
+RiskRewardRatio=2.0                    # Risk-reward ratio
+
+# Signal Settings
+StrategyPreset=3                       # 3 = STRATEGY_REVERSAL
+MinimumSignalStrength=6                # Higher signal strength required for reversals
+EnableNewsFilter=true                  # Avoid trading during news events
+MinNewsImportance=2                    # Filter medium and high impact news
+
+# Strategy Specific Indicators
+CustomizeStrategy=false                # Use predefined indicator setup
+UseMACross=false                       # No MA crossover for reversal
+UseRSI=true                            # RSI for divergence and overbought/oversold
+UseMACD=false                          # MACD not primary
+UseStochastic=false                    # Stochastic not primary
+UseBollingerBands=true                 # Bollinger Bands for price extremes
+UseADX=false                           # ADX not used
+UseATR=true                            # ATR for volatility and SL/TP
+UseFibonacci=false                     # Fibonacci not used
+UsePriceAction=true                    # Price action patterns crucial for reversals
+
+# Indicator Parameters
+# RSI Parameters
+rsiPeriod=14                           # Standard RSI period
+rsiOverbought=70                       # Overbought level
+rsiOversold=30                         # Oversold level
+
+# Bollinger Bands Parameters
+bbPeriod=20                            # BB period
+bbDeviation=2.0                        # Standard deviation
+
+# ATR Parameters
+atrPeriod=14                           # ATR period for volatility
+
+# Notification Settings
+EnableMT5Alerts=true                   # Enable MT5 alert popups
+EnableEmailAlerts=false                # Email alerts off by default
+EnableTelegramAlerts=false             # Telegram alerts off by default
+
+# Dashboard Settings
+ShowDashboard=true                     # Show visual dashboard
+DashboardX=20                          # Dashboard position
+DashboardY=20                          # Dashboard position
+DashboardFontSize=10                   # Dashboard font size
